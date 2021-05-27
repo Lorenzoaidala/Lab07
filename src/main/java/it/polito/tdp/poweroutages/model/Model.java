@@ -28,7 +28,7 @@ public class Model {
 		 partenza = this.getPowerOutagesByNerc(nerc);
 		 maxPersoneCoinvolte = 0;
 		 Collections.sort(partenza);
-		 cerca(partenza, maxYear,maxHours);
+		 cerca(new ArrayList<PowerOutages>(), maxYear,maxHours);
 		 return result;
 		 
 	 }
@@ -41,7 +41,11 @@ public class Model {
 		}
 		for(PowerOutages po : parziale) {
 			if(!result.contains(po)) {
+				result.add(po);
 				
+				if(checkMaxYears(result)<maxYear && checkMaxHours(result)<maxHours) {
+					cerca()
+				}
 			}
 		}
 		
