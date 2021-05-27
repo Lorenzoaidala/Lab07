@@ -37,18 +37,33 @@ public class Model {
 		
 		if(sommaPersoneCoinvolte(parziale)>maxPersoneCoinvolte) {
 			maxPersoneCoinvolte = sommaPersoneCoinvolte(parziale);
-			result = parziale;
+			result = new ArrayList<PowerOutages>(parziale);
 		}
-		for(PowerOutages po : parziale) {
-			if(!result.contains(po)) {
-				result.add(po);
+		for(PowerOutages po : partenza) {
+			if(!parziale.contains(po)) {
+				parziale.add(po);
 				
-				if(checkMaxYears(result)<maxYear && checkMaxHours(result)<maxHours) {
-					cerca()
+				if(checkMaxYears(parziale)<maxYear && checkMaxHours(parziale)<maxHours) {
+					cerca(parziale, maxYear,maxHours);
 				}
+				parziale.remove(parziale.size()-1);
 			}
 		}
 		
 	}
+
+	private int checkMaxYears(List<PowerOutages> parziale) {
+		
+		return 0;
+	}
+
+	private int sommaPersoneCoinvolte(List<PowerOutages> parziale) {
+		int somma = 0;
+		for(PowerOutages po : parziale) {
+			somma = somma + po.getAffectedPeople();
+		}
+		return somma;
+	}
+	
 
 }
