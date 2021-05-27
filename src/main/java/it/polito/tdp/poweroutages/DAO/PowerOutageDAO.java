@@ -54,14 +54,20 @@ public class PowerOutageDAO {
 			
 			
 			while(res.next()) {
-				PowerOutages temp = new PowerOutages(res.getInt("id"), nerc, res.getDa, res.getDate("date_event_finished"), res.getInt("customers_affected"));
+				PowerOutages temp = new PowerOutages(res.getInt("id"),
+						nerc, res.getTimestamp("date_event_began").toLocalDateTime(),
+						res.getTimestamp("date_event_finished").toLocalDateTime(),
+						res.getInt("customers_affected"));
 				
+				result.add(temp);
+				conn.close();
 			}
 			
 			
 		} catch(SQLException e) {
 			throw new RuntimeException("DB error", e);
 		}
+		return result;
 	}
 
 

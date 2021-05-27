@@ -70,6 +70,12 @@ public class PowerOutages implements Comparable<PowerOutages> {
 	public int compareTo(PowerOutages o) {	
 		return this.start.compareTo(o.start);
 	}
+	@Override
+	public String toString() {
+		return  "["+id+" inizio:"+start+" fine:"+end+" persone coinvole:"+affectedPeople+" durata:"+duration+"]\n";
+	}
+	
+	
 	
 	
 	
