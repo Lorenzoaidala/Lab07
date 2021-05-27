@@ -52,9 +52,22 @@ public class Model {
 		
 	}
 
+	private long checkMaxHours(List<PowerOutages> parziale) {
+		long result = 0;
+		for(PowerOutages po : parziale) {
+			result+= po.getDuration();
+		}
+		return result;
+	}
+
 	private int checkMaxYears(List<PowerOutages> parziale) {
-		
-		return 0;
+		int result = 0;
+		if(parziale.size()>=2) {
+			int anno1 = parziale.get(0).getYear();
+			int anno2 = parziale.get(parziale.size()-1).getYear();
+			result = anno2-anno1;
+		}
+		return result;
 	}
 
 	private int sommaPersoneCoinvolte(List<PowerOutages> parziale) {
