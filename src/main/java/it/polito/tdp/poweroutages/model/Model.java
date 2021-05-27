@@ -7,8 +7,10 @@ import it.polito.tdp.poweroutages.DAO.PowerOutageDAO;
 public class Model {
 	
 	PowerOutageDAO podao;
-	List<PowerOutages> partenza;
-	List<PowerOutages> result;
+	private List<PowerOutages> partenza;
+	private List<PowerOutages> result;
+	private int maxPersoneCoinvolte;
+	
 	
 	public Model() {
 		podao = new PowerOutageDAO();
@@ -24,6 +26,8 @@ public class Model {
 	 public List<PowerOutages> getWorstCase(Nerc nerc, int maxYear, int maxHours){
 		 
 		 partenza = this.getPowerOutagesByNerc(nerc);
+		 maxPersoneCoinvolte = 0;
+		 Collections.sort(partenza);
 		 cerca(partenza, maxYear,maxHours);
 		 return result;
 		 
@@ -31,7 +35,15 @@ public class Model {
 
 	private void cerca(List<PowerOutages> parziale, int maxYear, int maxHours) {
 		
-		
+		if(sommaPersoneCoinvolte(parziale)>maxPersoneCoinvolte) {
+			maxPersoneCoinvolte = sommaPersoneCoinvolte(parziale);
+			result = parziale;
+		}
+		for(PowerOutages po : parziale) {
+			if(!result.contains(po)) {
+				
+			}
+		}
 		
 	}
 
