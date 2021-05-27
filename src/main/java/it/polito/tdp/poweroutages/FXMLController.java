@@ -48,27 +48,31 @@ public class FXMLController {
 			Nerc selected_nerc = cmbNerc.getSelectionModel().getSelectedItem();
 			if(selected_nerc == null) {
 				txtResult.setText("Choose a valid NERC");
+				return;
 			}
 			
 			int maxOre = Integer.parseInt(txtHours.getText());
 			if(maxOre<=0) {
 				txtResult.setText("Hours number must be > 0");
+				return;
 			}
 			
 			int maxYears = Integer.parseInt(txtYears.getText());
 			if(maxYears<=0) {
 				txtResult.setText("Years number must be > 0");
+				return;
 			}
 			
 			List<PowerOutages> result = model.getWorstCase(selected_nerc, maxYears, maxOre);
 			
-			txtResult.setText(String.format("Computing analysis for max %d years and max %f hours duration", maxYears, maxOre));
+			txtResult.setText(String.format("Computing analysis for max %d years and max %d hours duration", maxYears, maxOre));
 			txtResult.clear();
 			
 			txtResult.appendText(String.format("Total people affected : %d\n", model.sommaPersoneCoinvolte(result)));
-			txtResult.appendText(String.format("Total duration of the outage: %f", model.checkMaxHours(result)));
+			txtResult.appendText(String.format("Total duration of the outage: %d\n", model.checkMaxHours(result)));
 			for(PowerOutages po : result) {
-			txtResult.appendText(String.format("%d ", null));
+			txtResult.appendText(String.format("%d %s %s %d %d", po.getYear(), po.getStart(), po.getEnd(), po.getDuration(), po.getAffectedPeople()));
+			txtResult.appendText("\n");
 			}
 			
 		} catch(NumberFormatException nfe) {
