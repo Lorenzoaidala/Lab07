@@ -12,8 +12,7 @@ public class PowerOutages implements Comparable<PowerOutages> {
 	private int affectedPeople;
 	private long duration;
 	private int year;
-	public PowerOutages(int id, Nerc nerc, LocalDateTime start, LocalDateTime end, int affectedPeople, long duration,
-			int year) {
+	public PowerOutages(int id, Nerc nerc, LocalDateTime start, LocalDateTime end, int affectedPeople) {
 		super();
 		this.id = id;
 		this.nerc = nerc;
