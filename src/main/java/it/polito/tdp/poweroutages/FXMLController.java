@@ -62,8 +62,13 @@ public class FXMLController {
 			
 			List<PowerOutages> result = model.getWorstCase(selected_nerc, maxYears, maxOre);
 			
-			for(PowerOutages po : result) {
+			txtResult.setText(String.format("Computing analysis for max %d years and max %f hours duration", maxYears, maxOre));
+			txtResult.clear();
 			
+			txtResult.appendText(String.format("Total people affected : %d\n", model.sommaPersoneCoinvolte(result)));
+			txtResult.appendText(String.format("Total duration of the outage: %f", model.checkMaxHours(result)));
+			for(PowerOutages po : result) {
+			txtResult.appendText(String.format("%d ", null));
 			}
 			
 		} catch(NumberFormatException nfe) {

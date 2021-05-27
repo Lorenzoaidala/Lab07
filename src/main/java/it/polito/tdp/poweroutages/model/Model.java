@@ -52,7 +52,7 @@ public class Model {
 		
 	}
 
-	private long checkMaxHours(List<PowerOutages> parziale) {
+	public long checkMaxHours(List<PowerOutages> parziale) {
 		long result = 0;
 		for(PowerOutages po : parziale) {
 			result+= po.getDuration();
@@ -60,7 +60,7 @@ public class Model {
 		return result;
 	}
 
-	private int checkMaxYears(List<PowerOutages> parziale) {
+	public int checkMaxYears(List<PowerOutages> parziale) {
 		int result = 0;
 		if(parziale.size()>=2) {
 			int anno1 = parziale.get(0).getYear();
@@ -70,7 +70,7 @@ public class Model {
 		return result;
 	}
 
-	private int sommaPersoneCoinvolte(List<PowerOutages> parziale) {
+	public int sommaPersoneCoinvolte(List<PowerOutages> parziale) {
 		int somma = 0;
 		for(PowerOutages po : parziale) {
 			somma = somma + po.getAffectedPeople();
